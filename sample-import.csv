@@ -1,0 +1,6 @@
+LICENSE NUMBER,BUSINESS NAME,LICENSE TYPE,ADDRESS,CITY,ZIP,PHONE
+TEST-001,Sample Shop One (test data),Recreational Retailer,100 Example St,PORTLAND,97204,503-555-0101
+TEST-002,Sample Shop Two (test data),Recreational Retailer,200 Example Ave,PORTLAND,97214,503-555-0102
+TEST-003,Sample Shop Three (test data),Recreational Retailer,300 Example Rd,BEND,97701,541-555-0103
+TEST-004,Sample Shop Four (test data),Recreational Retailer,400 Example Way,EUGENE,97401,541-555-0104
+TEST-005,Sample Farm (test data - producer; should be skipped),Recreational Producer,500 Example Ln,SALEM,97301,503-555-0105

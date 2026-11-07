@@ -50,6 +50,8 @@ input, select, button, .file-btn {
   font: inherit; color: var(--text); background: var(--surface);
   border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; min-height: 44px;
 }
+/* 16px minimum stops iOS Safari from zooming in when a field is tapped. */
+.field input, .field select { font-size: 16px; }
 input:focus, select:focus, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .actions { display: flex; flex-wrap: wrap; gap: 8px; }
 button, .file-btn { cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; }
