@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Oregon Dispensary Finder</title>
+  <meta name="description" content="Find cannabis dispensaries anywhere in Oregon and search by city." />
+  <meta name="theme-color" content="#1f5f3f" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>Oregon Dispensary Finder</h1>
+      <p class="sub">Search licensed cannabis retailers across Oregon by city. Adults 21+ only.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <form id="search" class="search" autocomplete="off">
+      <label class="field grow">
+        <span>City</span>
+        <input id="city" name="city" list="city-list" placeholder="e.g. Portland, Bend, Eugene" inputmode="search" />
+        <datalist id="city-list"></datalist>
+      </label>
+      <label class="field">
+        <span>Range</span>
+        <select id="radius" name="radius">
+          <option value="0">In city</option>
+          <option value="5">Within 5 mi</option>
+          <option value="10">Within 10 mi</option>
+          <option value="25">Within 25 mi</option>
+          <option value="50">Within 50 mi</option>
+        </select>
+      </label>
+      <label class="field grow">
+        <span>Filter by name, street or ZIP</span>
+        <input id="text" name="text" placeholder="Optional" inputmode="search" />
+      </label>
+      <div class="actions">
+        <button type="submit" class="primary">Search</button>
+        <button type="button" id="near-me">Near me</button>
+        <button type="button" id="clear" class="ghost">Show all</button>
+      </div>
+    </form>
+
+    <div id="status" class="status" role="status" aria-live="polite">Loading dispensaries…</div>
+
+    <section class="results-layout">
+      <div id="map" class="map" aria-label="Map of results"></div>
+      <div class="list-col">
+        <div class="list-head">
+          <h2 id="result-title">All Oregon dispensaries</h2>
+          <span id="result-count" class="count"></span>
+        </div>
+        <ol id="results" class="results"></ol>
+      </div>
+    </section>
+
+    <section class="cities">
+      <h2>Browse by city</h2>
+      <div id="city-chips" class="chips"></div>
+    </section>
+
+    <section class="data">
+      <h2>Data</h2>
+      <p id="data-info"></p>
+      <div class="actions">
+        <button type="button" id="refresh">Refresh from OpenStreetMap</button>
+        <label class="file-btn">
+          Import CSV (e.g. OLCC list)
+          <input type="file" id="csv" accept=".csv,text/csv" hidden />
+        </label>
+        <button type="button" id="reset-import" class="ghost" hidden>Remove imported list</button>
+      </div>
+      <p class="fine">
+        Listings come from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>
+        contributors (ODbL) and may be incomplete or out of date. For the official list of licensed retailers, see the
+        <a href="https://www.oregon.gov/olcc/marijuana/Pages/default.aspx" target="_blank" rel="noopener">Oregon Liquor and Cannabis Commission (OLCC)</a>;
+        you can export it as CSV and import it above. Always call ahead to confirm hours.
+      </p>
+    </section>
+  </main>
+
+  <template id="card-tpl">
+    <li class="card">
+      <div class="card-main">
+        <h3 class="name"></h3>
+        <p class="addr"></p>
+        <p class="meta"></p>
+        <p class="hours"></p>
+      </div>
+      <div class="card-links"></div>
+    </li>
+  </template>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

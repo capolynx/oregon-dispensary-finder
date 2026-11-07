@@ -1,0 +1,98 @@
+:root {
+  --bg: #f6f7f5;
+  --surface: #ffffff;
+  --text: #1b1f1c;
+  --muted: #5d665f;
+  --border: #dde2dd;
+  --accent: #1f5f3f;
+  --accent-text: #ffffff;
+  --accent-soft: #e4f0e8;
+  --warn: #8a5a00;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121513;
+    --surface: #1b201c;
+    --text: #e8ece9;
+    --muted: #9aa59d;
+    --border: #2d352f;
+    --accent: #5fbf8a;
+    --accent-text: #0d1a12;
+    --accent-soft: #203328;
+    --warn: #e0b45a;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+a { color: var(--accent); }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+
+.top { background: var(--accent); color: var(--accent-text); padding: 18px 0 14px; }
+.top h1 { margin: 0; font-size: 1.5rem; }
+.top .sub { margin: 4px 0 0; opacity: 0.9; font-size: 0.95rem; }
+
+.search {
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px; margin: 16px 0 10px;
+}
+.field { display: flex; flex-direction: column; gap: 4px; font-size: 0.85rem; color: var(--muted); min-width: 140px; }
+.field.grow { flex: 1 1 220px; }
+input, select, button, .file-btn {
+  font: inherit; color: var(--text); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; min-height: 44px;
+}
+input:focus, select:focus, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+button, .file-btn { cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; }
+button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+button.ghost { background: transparent; }
+button:disabled { opacity: 0.6; cursor: progress; }
+
+.status { color: var(--muted); font-size: 0.9rem; min-height: 1.4em; margin-bottom: 10px; }
+.status.error { color: var(--warn); }
+
+.results-layout { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 900px) {
+  .results-layout { grid-template-columns: 1.1fr 1fr; align-items: start; }
+  .map { position: sticky; top: 12px; height: calc(100vh - 24px) !important; max-height: 720px; }
+  .list-col { max-height: 720px; overflow-y: auto; }
+}
+.map { height: 240px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); z-index: 0; }
+.map.no-map { display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.9rem; }
+
+.list-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.list-head h2 { margin: 0 0 8px; font-size: 1.15rem; }
+.count { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
+.results { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.card.active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.card h3 { margin: 0; font-size: 1.05rem; }
+.card p { margin: 2px 0 0; font-size: 0.92rem; }
+.card .meta, .card .hours { color: var(--muted); }
+.card .hours:empty, .card .meta:empty { display: none; }
+.card-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.card-links a {
+  font-size: 0.88rem; font-weight: 600; text-decoration: none; padding: 6px 10px;
+  border-radius: 999px; background: var(--accent-soft); color: var(--text);
+}
+.tag { display: inline-block; font-size: 0.75rem; padding: 1px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--text); margin-left: 6px; vertical-align: middle; }
+.empty { color: var(--muted); padding: 20px 4px; }
+
+.cities, .data { margin: 28px 0; }
+.cities h2, .data h2 { font-size: 1.15rem; margin: 0 0 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { min-height: 36px; padding: 6px 10px; font-weight: 500; font-size: 0.9rem; border-radius: 999px; }
+.chips button .n { color: var(--muted); margin-left: 4px; }
+.fine { color: var(--muted); font-size: 0.85rem; max-width: 70ch; }
